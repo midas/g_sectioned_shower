@@ -1,0 +1,13 @@
+History.txt
+Manifest.txt
+PostInstall.txt
+README.rdoc
+Rakefile
+lib/g_sectioned_shower.rb
+script/console
+script/destroy
+script/generate
+spec/g_sectioned_shower_spec.rb
+spec/spec.opts
+spec/spec_helper.rb
+tasks/rspec.rake
