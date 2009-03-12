@@ -3,7 +3,9 @@ Manifest.txt
 PostInstall.txt
 README.rdoc
 Rakefile
+g_sectioned_shower.gemspec
 lib/g_sectioned_shower.rb
+lib/g_sectioned_shower/view_helpers.rb
 script/console
 script/destroy
 script/generate

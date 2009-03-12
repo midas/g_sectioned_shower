@@ -1,32 +1,61 @@
 = g_sectioned_shower
 
-* FIX (url)
+http://github.com/midas/g_sectioned_shower/tree/master
+
 
 == DESCRIPTION:
 
-FIX (describe your package)
+A Guilded (http://github.com/midas/guilded/tree/master) component that creates adabtaple show (detail) views of a single 
+ActiveRecord object.
 
-== FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+== FEATURES:
 
-== SYNOPSIS:
+* Generates a detail view of an ActiveRecord object using a XHTML data list
+* Can generate a status field (to integrate with AASM, etc)
+* Adaptable title section
+* Generates one main section and zero too many other sections
+* Can generate different sections of the detail (not necessarily divided by domain model)
+* Can pull details from associated has_one or belongs_to record
+* Can generate link to associated has_one or belongs_to record
+* Can pull details from associated has_many records (allows you to specify max and generates an efficient query)
+* Can generate link to associated has_many records and the associations list page
+* Can configure sections to dynamically display based on any conditions
 
-  FIX (code sample of usage)
-
-== REQUIREMENTS:
-
-* FIX (list of requirements)
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+  sudo gem install midas-g_sectioned_shower
+
+In Rails environement.rb file:
+
+  config.gem 'midas-g_section_shower', :version => '1.0.0', :lib => 'g_section_shower', :source => 'http://gems.github.com'
+
+
+== USAGE:
+
+View:
+
+	<%= g_sectioned_shower @item, :title_attr => :name, :date_format => :us_long, :status => @ticket.status, 
+        :id => 'item-detail', :sections => [ { :attributes => [:is_active, :created_at, :updated_at }, 
+        { :title => 'Owner', :attributes => [:person], :person_attributes => [:first_name, :last_name, :address => 'Street Address'] } ] 
+  %>
+
+Results in:
+
+
+
+== REQUIREMENTS:
+
+* Rails >= 2.2.0
+* Guilded >= 0.0.9 (http://github.com/midas/guilded/tree/master)
+
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2009 FIXME full name
+Copyright (c) 2009 C. Jason Harrelson (midas)
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
