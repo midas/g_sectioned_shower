@@ -85,7 +85,7 @@ module GSectionedShower
         raise ArgumentError, "'attributes' option required within main section configuration" unless section.include?( :attributes )
         raise ArgumentError, "'title' option required within all section configurations except the main section" unless section.include?( :title )
         
-        methods, titles = resolve_field_methods_and_titles( section[:attributes], ar_obj )
+        methods, titles = Guilded::Rails::Helpers.resolve_field_methods_and_titles( section[:attributes], ar_obj )
         html << "<div class=\"infoItem tableDisplay\"><h3>#{section[:title]}</h3><dl>"
         
         methods.each_with_index do |method, i|
@@ -135,7 +135,7 @@ module GSectionedShower
         max = section[ max_name.to_sym ]
         showing_less_than_all = max && max < ar_obj.send( methods[index] ).count
         empty_embedded_ar_obj = reflection.klass.new
-        rel_methods, rel_titles = resolve_field_methods_and_titles( attrs, empty_embedded_ar_obj ) unless attrs.nil? || attrs.empty?
+        rel_methods, rel_titles = Guilded::Rails::Helpers.resolve_field_methods_and_titles( attrs, empty_embedded_ar_obj ) unless attrs.nil? || attrs.empty?
         
         # Handle creating a link to the associated many objects list
         if section[:list_link]
@@ -233,7 +233,7 @@ module GSectionedShower
           # Handle object output if fields specified explicitly
 
           attrs = section[ "#{reflection.name.to_s.singularize}_attributes".to_sym ]
-          rel_methods, rel_titles = resolve_field_methods_and_titles( attrs, ar_obj.send( reflection.name.to_s.to_sym ) )
+          rel_methods, rel_titles = Guilded::Rails::Helpers.resolve_field_methods_and_titles( attrs, ar_obj.send( reflection.name.to_s.to_sym ) )
           assoc_obj = ar_obj.send( methods[index] )
 
           rel_methods.each_with_index do |rel_method, rel_i|
