@@ -1,3 +1,10 @@
+== 1.0.3 2009-04-07
+
+* Refactored to use the Guilded rest path helper resolvers
+* Took out the :link_helper option for now to gain some efficiency
+* Added a scoped_by option for the show action object and any associated objects that need are deeply nested
+
+
 == 1.0.2 2009-03-18
 
 * Updated a Rails helpers

@@ -29,7 +29,7 @@ ActiveRecord object.
 
 In Rails environement.rb file:
 
-  config.gem 'midas-g_sectioned_shower', :version => '1.0.1', :lib => 'g_sectioned_shower', :source => 'http://gems.github.com'
+  config.gem 'midas-g_sectioned_shower', :version => '1.0.3', :lib => 'g_sectioned_shower', :source => 'http://gems.github.com'
 
 
 == USAGE:
