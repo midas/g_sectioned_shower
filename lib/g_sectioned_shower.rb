@@ -4,7 +4,7 @@ $:.unshift(File.dirname(__FILE__)) unless
 require 'g_sectioned_shower/view_helpers'
 
 module GSectionedShower
-  VERSION = '1.0.4'
+  VERSION = '1.0.5'
 end
 
 if defined?( ActionView::Base )
