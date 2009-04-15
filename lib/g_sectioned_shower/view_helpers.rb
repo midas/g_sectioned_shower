@@ -178,6 +178,7 @@ module GSectionedShower
         reflected_humanized_name = reflected_name.humanize
         attrs_name = "#{reflected_singular_name}_attributes"
         attrs = section[ attrs_name.to_sym ]
+        scoped_by = section[ "#{reflection.name.to_s.singularize}_scoped_by".to_sym ]
         max_name = "#{reflected_singular_name}_max"
         max = section[ max_name.to_sym ]
         showing_less_than_all = max && max < ar_obj.send( methods[index] ).count
@@ -231,7 +232,7 @@ module GSectionedShower
               throw "The 'links' option must have values in it, or be left out of the options for the section." if !links.nil? && links.empty?
               unless links.nil?
                 link_entry = find_link_entry( links, rel_method )  # section.has_key?( :links )
-                ospts = Hash.new
+                opts = Hash.new
                 opts.merge!( :scoped_by => scoped_by ) unless scoped_by.nil?
                 path_helpers = Guilded::Rails::Helpers.resolve_rest_path_helpers( assoc_ar_obj, opts )
               end
