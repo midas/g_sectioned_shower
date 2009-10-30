@@ -1,3 +1,8 @@
+== 1.0.6 2009-10-29
+
+* Fixed bug with associated objects that are nil still trying to send methods to get values back.
+
+
 == 1.0.3 2009-04-07
 
 * Refactored to use the Guilded rest path helper resolvers

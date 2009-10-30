@@ -1,30 +1,58 @@
-%w[rubygems rake rake/clean fileutils newgem rubigen].each { |f| require f }
-require File.dirname(__FILE__) + '/lib/g_sectioned_shower'
+require 'rubygems'
+require 'rake'
 
-# Generate all the Rake tasks
-# Run 'rake -T' to see list of generated tasks (from gem root directory)
-$hoe = Hoe.new('g_sectioned_shower', GSectionedShower::VERSION) do |p|
-  p.developer('C. Jason Harrelson (midas)', 'jason@lookforwardenterprises.com')
-  p.changes              = p.paragraphs_of("History.txt", 0..1).join("\n\n")
-  p.post_install_message = 'PostInstall.txt' # TODO remove if post-install message not required
-  p.rubyforge_name       = p.name # TODO this is default value
-  # p.extra_deps         = [
-  #   ['activesupport','>= 2.0.2'],
-  # ]
-  p.extra_dev_deps = [
-    ['newgem', ">= #{::Newgem::VERSION}"],
-    ['rails', ">= 2.2.0"],
-    ['midas-guilded', ">=0.1.4"]
-  ]
-  
-  p.clean_globs |= %w[**/.DS_Store tmp *.log]
-  path = (p.rubyforge_name == p.name) ? p.rubyforge_name : "\#{p.rubyforge_name}/\#{p.name}"
-  p.remote_rdoc_dir = File.join(path.gsub(/^#{p.rubyforge_name}\/?/,''), 'rdoc')
-  p.rsync_args = '-av --delete --ignore-errors'
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gem|
+    gem.name = "g_sectioned_shower"
+    gem.summary = %Q{A Guilded (http://github.com/midas/guilded/tree/master) component that creates adaptable show (detail) views of a single ActiveRecord object.}
+    gem.description = %Q{A Guilded (http://github.com/midas/guilded/tree/master) component that creates adaptable show (detail) views of a single ActiveRecord object.}
+    gem.email = "jason@lookforwardenterprises.com"
+    gem.homepage = "http://github.com/midas/tester"
+    gem.authors = ["C. Jason Harrelson (midas)"]
+    gem.add_dependency 'rails', ">= 2.2.0"
+    gem.add_dependency 'guilded', ">= 1.0.0"
+    gem.add_development_dependency "shoulda"
+  end
+  Jeweler::GemcutterTasks.new
+rescue LoadError
+  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
 
-require 'newgem/tasks' # load /tasks/*.rake
-Dir['tasks/**/*.rake'].each { |t| load t }
+require 'rake/testtask'
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/*_test.rb'
+  test.verbose = true
+end
 
-# TODO - want other tests/tasks run by default? Add them to the list
-# task :default => [:spec, :features]
+begin
+  require 'rcov/rcovtask'
+  Rcov::RcovTask.new do |test|
+    test.libs << 'test'
+    test.pattern = 'test/**/*_test.rb'
+    test.verbose = true
+  end
+rescue LoadError
+  task :rcov do
+    abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
+  end
+end
+
+task :test => :check_dependencies
+
+task :default => :test
+
+require 'rake/rdoctask'
+Rake::RDocTask.new do |rdoc|
+  if File.exist?('VERSION')
+    version = File.read('VERSION')
+  else
+    version = ""
+  end
+
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "tester #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end

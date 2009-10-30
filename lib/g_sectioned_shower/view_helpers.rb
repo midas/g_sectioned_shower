@@ -143,7 +143,7 @@ module GSectionedShower
 
           rel_methods.each_with_index do |rel_method, rel_i|
 
-            method_output = h( assoc_obj.send( rel_method ) )
+            method_output = h( assoc_obj.send( rel_method ) ) unless assoc_obj.nil?
 
             links = section[:links]
             throw "The 'links' option must have values in it, or be left out of the options for the section." if !links.nil? && links.empty?
@@ -226,7 +226,7 @@ module GSectionedShower
 
             rel_methods.each_with_index do |rel_method, rel_i|
 
-              method_output = h( assoc_ar_obj.send( rel_method ) )
+              method_output = h( assoc_ar_obj.send( rel_method ) ) unless assoc_obj.nil?
 
               links = section[:links]
               throw "The 'links' option must have values in it, or be left out of the options for the section." if !links.nil? && links.empty?

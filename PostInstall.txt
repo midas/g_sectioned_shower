@@ -1,7 +1,0 @@
-
-For more information on g_sectioned_shower, see http://g_sectioned_shower.rubyforge.org
-
-NOTE: Change this information in PostInstall.txt 
-You can also delete it if you don't want it.
-
-

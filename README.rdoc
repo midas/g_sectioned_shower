@@ -5,7 +5,7 @@ http://github.com/midas/g_sectioned_shower/tree/master
 
 == DESCRIPTION:
 
-A Guilded (http://github.com/midas/guilded/tree/master) component that creates adaptaple show (detail) views of a single 
+A Guilded (http://github.com/midas/guilded/tree/master) component that creates adaptable show (detail) views of a single 
 ActiveRecord object.
 
 
