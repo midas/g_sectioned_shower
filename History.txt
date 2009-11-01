@@ -1,3 +1,8 @@
+== 1.0.7 2009-11-01
+
+* Fixed bug created in 1.0.6 with incorrect variable name (typo).
+
+
 == 1.0.6 2009-10-29
 
 * Fixed bug with associated objects that are nil still trying to send methods to get values back.

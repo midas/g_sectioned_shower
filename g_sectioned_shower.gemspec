@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{g_sectioned_shower}
-  s.version = "1.0.6"
+  s.version = "1.0.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["C. Jason Harrelson (midas)"]
-  s.date = %q{2009-10-29}
+  s.date = %q{2009-11-01}
   s.description = %q{A Guilded (http://github.com/midas/guilded/tree/master) component that creates adaptable show (detail) views of a single ActiveRecord object.}
   s.email = %q{jason@lookforwardenterprises.com}
   s.extra_rdoc_files = [
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     "History.txt",
+     "LICENSE",
      "README.rdoc",
      "Rakefile",
      "VERSION",
@@ -27,7 +28,8 @@ Gem::Specification.new do |s|
      "script/console",
      "script/destroy",
      "script/generate",
-     "tasks/rspec.rake"
+     "tasks/rspec.rake",
+     "test/test_helper.rb"
   ]
   s.homepage = %q{http://github.com/midas/tester}
   s.rdoc_options = ["--charset=UTF-8"]
