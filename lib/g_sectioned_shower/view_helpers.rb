@@ -125,8 +125,14 @@ module GSectionedShower
           handle_associated_many( html, ar_obj, reflection, section, methods, index )
         elsif ['belongs_to', 'has_one'].include?( reflection.macro.to_s ) # Handle single relationships
           handle_associated_single( html, ar_obj, reflection, section, methods, index )
+        elsif reflection.macro.to_s == 'composed_of'
+          handle_composed_of( html, ar_obj, methods, index )
         end
 
+      end
+      
+      def handle_composed_of( html, ar_obj, methods, index )
+        html << "<dt>#{methods[index].to_s.humanize}</dt><dd>#{ar_obj.send( methods[index] ).to_s}</dd>"
       end
 
       def handle_associated_single( html, ar_obj, reflection, section, methods, index )
