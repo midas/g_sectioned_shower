@@ -1,16 +1,16 @@
 module GSectionedShower
   module ViewHelpers
-   
+
     # GUIlded component.
     #
     # *parameters*
     # ar_obj:: The ActiveRecord object containing the information.
-    # 
+    #
     # *options*
     # id:: (required) The id of the element.  Must be unique on the page.
     # class::
     # title_attr:: The attribute to use in the title.
-    # title_pre:: A string to override the first part of the title.  defaults to the name 
+    # title_pre:: A string to override the first part of the title.  defaults to the name
     #   of the active record object's class.
     # date_format:: A symbol representing the date format to use.  Defaults to :default.
     # attributes:: A list of attributes to include in the main section.
@@ -20,10 +20,10 @@ module GSectionedShower
     #   title:: The title for this section.
     #   attributes:: List of attibutes to include in this section.
     #   {associated_attribute_name}_attributes:: List of attributes from associated attribute to include.
-    #   {associated_attribute_name}_max:: The max number of associated records to show.  This will load 
+    #   {associated_attribute_name}_max:: The max number of associated records to show.  This will load
     #     all and display max unless you define a limited named scope on the respective model, allowing
     #     the association to be limited to the max, not returning items that will not be displayed.
-    #   links:: A list of fields or field => path_helper to generate links to this item in the associated 
+    #   links:: A list of fields or field => path_helper to generate links to this item in the associated
     #     object.
     #   list_link:: (Boolean, string, or symbol)
     #
@@ -115,7 +115,7 @@ module GSectionedShower
       end
 
       protected
-      
+
       def handle_associated( html, ar_obj, section, reflections, methods, index )
         #TODO handle translation helpers if they exist.
         reflection = reflections[methods[index].to_sym]
@@ -130,9 +130,10 @@ module GSectionedShower
         end
 
       end
-      
+
       def handle_composed_of( html, ar_obj, methods, index )
-        html << "<dt>#{methods[index].to_s.humanize}</dt><dd>#{ar_obj.send( methods[index] ).to_s}</dd>"
+        label = ar_obj.class.human_attribute_name( methods[index] ) || methods[index].to_s.humanize
+        html << "<dt>#{label}</dt><dd>#{ar_obj.send( methods[index] ).to_s}</dd>"
       end
 
       def handle_associated_single( html, ar_obj, reflection, section, methods, index )
