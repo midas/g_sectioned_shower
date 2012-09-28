@@ -1,0 +1,2 @@
+rvm use ruby-1.8.7-p334@g_sectioned_shower --create
+rvm current
